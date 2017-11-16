@@ -20,7 +20,7 @@ int loops;
 
 //#define ROTATION 663 // According to manual
 //#define ROTATION 398  // According to tests?
-#define ROTATION 1326 //1326?????
+#define ROTATION 315 //1326?????
 
 #define CIRC 136 * PI
 
