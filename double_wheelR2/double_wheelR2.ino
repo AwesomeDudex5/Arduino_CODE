@@ -81,31 +81,40 @@ void loop()
     float turns0    = ((float)encoder0Pos)/ROTATION;
     float turns1    = ((float)encoder1Pos)/ROTATION;
 
+    Serial.print("Encoder Pos ");
+    Serial.print(encoder0Pos);
+    Serial.print(" ");
+    Serial.print(encoder1Pos);
+    Serial.println(" ");
+
     desiredTurns = 2;   
 
     //do one full turn
-    int durationPip = duration0 * PIP_DIST;
-    if((durationPip) <= -desiredTurns){
-    //if(duration0 < desiredTurns){
-    Serial.print(duration0);
-    Serial.print(" ");
-    Serial.print(duration1);
-    Serial.print(" ");
-    Serial.print(durationPip);
-    Serial.println(" ");
+    int durationPip = PIP_DIST * duration0;
     
-    power0=95; //Wheel 1
-    power1=78; //Wheel 2
+    if((durationPip) <= distance){
+    //if(duration0 < desiredTurns){
+    power1=96; //Wheel 2
+    power0=78; //Wheel 1
     // sending the control with PWM 
     }
     else
     {
       power0 = 90;
       power1 = 90;      
+      .
     }
     ST1.write(power0);
     ST2.write(power1);
 
+    Serial.print("Turns ");
+    Serial.print(turns0);
+    Serial.print(" ");
+    Serial.print(turns1);
+    Serial.print(" ");
+    Serial.print(durationPip);
+    Serial.println(" ");
+    
 //E N C O D E R  S T U F F
   encoder0PinALast = n;
   valNew = encoder0Pos;
@@ -119,14 +128,35 @@ void loop()
     valOld1 = valNew1;
   }
    
-  loopCnt++;
-
-  
+  loopCnt++;  
   
 }
 
 
-void turning()
+void moveForward(int distance, int durationPip)
+{
+  while(durationPip <= distance)
+  {
+    power0=95; //Wheel 1
+    power1=78; //Wheel 2
+  }
+
+  //Stop
+  power0 = 90;
+  power1 = 90;      
+}
+
+void moveBackward()
+{
+  
+}
+
+void turningLeft()
+{
+  
+}
+
+void turningRight()
 {
   
 }
@@ -146,6 +176,7 @@ void wheelSpeed0()
   
   if(!Direction0)  duration0++;
   else  duration0--;
+
 }
 
 void wheelSpeed1()
@@ -163,6 +194,5 @@ void wheelSpeed1()
   
   if(!Direction1)  duration1++;
   else  duration1--;
+   
 }
-
-
