@@ -1,7 +1,4 @@
 /* Testing movement functions, Robo-team 1
- *  Nicolas Fredrickson
- *  Steven Coronel
- *  November 16th, 2017
  */
 
 // we can achieve a 90 degree turn via 450/1088 turns

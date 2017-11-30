@@ -68,6 +68,7 @@ void setup()
   pinMode(encoder1pinB,INPUT);  
   attachInterrupt(digitalPinToInterrupt(encoder0pinA), wheelSpeed0, CHANGE);
   attachInterrupt(digitalPinToInterrupt(encoder1pinA), wheelSpeed1, CHANGE);
+  duration0 =0; duration1 = 0;
 
 }
 
@@ -92,10 +93,11 @@ void loop()
     //do one full turn
     int durationPip = PIP_DIST * duration0;
     
-    //if((durationPip) <= distance){
-    if(duration0 < desiredTurns){
-    power1=78; //Wheel 2
-    power0=96; //Wheel 1
+    if(((duration0 + duration1) / 2) * PIP_DIST >= distance){
+    //if(duration0 < desiredTurns){
+    power0=78; //Wheel 1
+    power1=96; //Wheel 2
+    duration0 = 0; duration1 = 0;
 
     /*Josh Computer set to same number
      * 
@@ -122,7 +124,7 @@ void loop()
     Serial.print(" ");
     Serial.print(durationPip);
     Serial.println(" ");
-    
+    /*
 //E N C O D E R  S T U F F
   encoder0PinALast = n;
   valNew = encoder0Pos;
@@ -137,7 +139,7 @@ void loop()
   }
    
   loopCnt++;  
-  
+  */
 }
 
 
