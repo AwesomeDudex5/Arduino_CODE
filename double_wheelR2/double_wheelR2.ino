@@ -92,17 +92,25 @@ void loop()
     //do one full turn
     int durationPip = PIP_DIST * duration0;
     
-    if((durationPip) <= distance){
-    //if(duration0 < desiredTurns){
-    power1=96; //Wheel 2
-    power0=78; //Wheel 1
+    //if((durationPip) <= distance){
+    if(duration0 < desiredTurns){
+    power1=78; //Wheel 2
+    power0=96; //Wheel 1
+
+    /*Josh Computer set to same number
+     * 
+     *  
+     *  power1=95; //Wheel 2
+        power0=95; //Wheel 1
+     * */
+     
     // sending the control with PWM 
     }
     else
     {
       power0 = 90;
       power1 = 90;      
-      .
+
     }
     ST1.write(power0);
     ST2.write(power1);
